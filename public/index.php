@@ -1,9 +1,9 @@
 <?php
 
-
 use Sandbox\App\App;
 use Sandbox\Request\RequestCreator;
 use Sandbox\Response\ResponseCreator;
+use Sandbox\Response\ResponseHandler;
 use Sandbox\Routing\Router;
 
 require_once '../vendor/autoload.php';
@@ -15,7 +15,9 @@ $request = $requestCreator->createRequest();
 $responseCreator = new ResponseCreator();
 $response = $responseCreator->createResponse();
 
-$router = new Router($request, $response);
+$responseSender = new ResponseHandler($response);
+
+$router = new Router($request, $responseSender);
 
 $app = new App($response, $request, $router);
 

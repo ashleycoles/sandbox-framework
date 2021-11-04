@@ -6,24 +6,25 @@ namespace Sandbox\Response;
 
 class Response
 {
-    protected string $contentType;
+    protected array $headers;
     protected string $content;
 
-
-    /**
-     * @return string
-     */
-    public function getContentType(): string
+    public function setHeader(string $header): Response
     {
-        return $this->contentType;
+        $this->headers[] = $header;
+        return $this;
     }
 
     /**
-     * @param string $contentType
+     * Sends all the request headers
+     * @param string $headers
      */
-    public function setContentType(string $contentType): void
+    public function sendHeaders(): Response
     {
-        $this->contentType = $contentType;
+        foreach ($this->headers as $header) {
+            header($header);
+        }
+        return $this;
     }
 
     /**
