@@ -3,13 +3,16 @@
 
 namespace Sandbox\Request;
 
+
+use Sandbox\Interfaces\RequestInterface;
+
 class RequestCreator
 {
     /**
      * Public interface for generating a Request object.
-     * @return Request
+     * @return RequestInterface
      */
-    public function createRequest(): Request
+    public function createRequest(): RequestInterface
     {
         $uri = $this->getRequestURI();
         $method = $this->getRequestMethod();

@@ -4,20 +4,20 @@
 namespace Sandbox\Routing;
 
 
-use Sandbox\Request\Request;
+use Sandbox\Interfaces\RequestInterface;
 use Sandbox\Response\ResponseHandler;
 
 class Router
 {
-    protected Request $request;
+    protected RequestInterface $request;
     protected ResponseHandler $responseHandler;
     protected array $routes = [];
 
     /**
      * Router constructor.
-     * @param Request $request
+     * @param RequestInterface $request
      */
-    public function __construct(Request $request, ResponseHandler $responseHandler)
+    public function __construct(RequestInterface $request, ResponseHandler $responseHandler)
     {
         $this->request = $request;
         $this->responseHandler = $responseHandler;

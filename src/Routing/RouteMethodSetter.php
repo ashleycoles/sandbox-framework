@@ -4,21 +4,23 @@
 namespace Sandbox\Routing;
 
 
-use Sandbox\Request\Request;
-use Sandbox\Response\Response;
+use Sandbox\Interfaces\RequestInterface;
+use Sandbox\Interfaces\ResponseInterface;
 
 class RouteMethodSetter
 {
 
-    protected Response $response;
-    protected Request $request;
+    protected ResponseInterface $response;
+    protected RequestInterface $request;
     protected Router $router;
 
     /**
      * RouteMethodSetter constructor.
-     * @param Response $response
+     * @param ResponseInterface $response
+     * @param RequestInterface $request
+     * @param Router $router
      */
-    public function __construct(Response $response, Request $request, Router $router)
+    public function __construct(ResponseInterface $response, RequestInterface $request, Router $router)
     {
         $this->response = $response;
         $this->request = $request;

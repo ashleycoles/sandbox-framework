@@ -14,9 +14,9 @@ $request = $requestCreator->createRequest();
 
 $response = ResponseCreator::createResponse();
 
-$responseSender = new ResponseHandler($response);
+$responseHandler = new ResponseHandler($response);
 
-$router = new Router($request, $responseSender);
+$router = new Router($request, $responseHandler);
 
 $app = new App($response, $request, $router);
 

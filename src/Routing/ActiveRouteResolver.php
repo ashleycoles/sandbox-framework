@@ -4,17 +4,17 @@
 namespace Sandbox\Routing;
 
 
-use Sandbox\Request\Request;
+use Sandbox\Interfaces\RequestInterface;
 
 class ActiveRouteResolver
 {
     /**
      * Compares a Request with the array of Route objects.
      * @param array $routes
-     * @param Request $request
+     * @param RequestInterface $request
      * @return Route
      */
-    static public function resolveRoutes(array $routes, Request $request): Route
+    static public function resolveRoutes(array $routes, RequestInterface $request): Route
     {
         /* @var $route Route */
         foreach($routes as $route) {

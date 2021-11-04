@@ -4,11 +4,18 @@
 namespace Sandbox\Response;
 
 
-class Response
+use Sandbox\Interfaces\ResponseInterface;
+
+class Response implements ResponseInterface
 {
     protected array $headers;
     protected string $content;
 
+    /**
+     * Adds an individual header into the headers array
+     * @param string $header
+     * @return $this
+     */
     public function setHeader(string $header): Response
     {
         $this->headers[] = $header;

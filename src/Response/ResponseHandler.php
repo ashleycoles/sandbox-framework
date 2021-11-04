@@ -4,15 +4,17 @@
 namespace Sandbox\Response;
 
 
+use Sandbox\Interfaces\ResponseInterface;
+
 class ResponseHandler
 {
-    protected Response $response;
+    protected ResponseInterface $response;
 
     /**
      * ResponseHandler constructor.
-     * @param Response $response
+     * @param ResponseInterface $response
      */
-    public function __construct(Response $response)
+    public function __construct(ResponseInterface $response)
     {
         $this->response = $response;
     }

@@ -4,7 +4,9 @@
 namespace Sandbox\Request;
 
 
-class Request
+use Sandbox\Interfaces\RequestInterface;
+
+class Request implements RequestInterface
 {
     protected string $URI;
     protected string $method;
