@@ -3,7 +3,6 @@
 
 namespace Sandbox\Request;
 
-// TODO: Better as statics?
 class RequestCreator
 {
     /**
