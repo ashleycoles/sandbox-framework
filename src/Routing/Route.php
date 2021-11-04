@@ -10,18 +10,18 @@ class Route implements RouteInterface
 {
     protected string $URI;
     protected string $method;
-    protected string $content;
+    protected $callable;
 
     /**
      * Route constructor.
      * @param string $URI
-     * @param string $method
+     * @param callable $method
      */
-    public function __construct(string $URI, string $method, string $content)
+    public function __construct(string $URI, string $method, callable $callable)
     {
         $this->URI = $URI;
         $this->method = $method;
-        $this->content = $content;
+        $this->callable = $callable;
     }
 
     /**
@@ -43,9 +43,9 @@ class Route implements RouteInterface
     /**
      * @return string
      */
-    public function getContent(): string
+    public function getCallable(): callable
     {
-        return $this->content;
+        return $this->callable;
     }
 
 }

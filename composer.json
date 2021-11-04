@@ -1,11 +1,15 @@
 {
   "autoload": {
     "psr-4": {
-      "Sandbox\\":"src/"
+      "Sandbox\\":"src/",
+      "TestApp\\": "app/"
     }
   },
   "scripts": {
     "start": "php -S localhost:8080 -t public",
     "test": "phpunit"
+  },
+  "require": {
+    "ext-json": "*"
   }
 }

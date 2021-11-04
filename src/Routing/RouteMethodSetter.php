@@ -30,10 +30,11 @@ class RouteMethodSetter
     /**
      * Creates a GET route.
      * @param string $URI
+     * @param callable $callable
      */
-    public function get(string $URI, string $content): void
+    public function get(string $URI, callable $callable): void
     {
-        $route = RouteCreator::createRoute($URI, 'GET', $content);
+        $route = RouteCreator::createRoute($URI, 'GET', $callable);
         $this->router->registerRoute($route);
     }
 

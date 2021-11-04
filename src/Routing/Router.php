@@ -4,6 +4,7 @@
 namespace Sandbox\Routing;
 
 
+use Sandbox\Caller;
 use Sandbox\Interfaces\RequestInterface;
 use Sandbox\Interfaces\RouteInterface;
 use Sandbox\Response\ResponseHandler;
@@ -12,16 +13,20 @@ class Router
 {
     protected RequestInterface $request;
     protected ResponseHandler $responseHandler;
+    protected Caller $caller;
     protected array $routes = [];
 
     /**
      * Router constructor.
      * @param RequestInterface $request
+     * @param ResponseHandler $responseHandler
+     * @param Caller $caller
      */
-    public function __construct(RequestInterface $request, ResponseHandler $responseHandler)
+    public function __construct(RequestInterface $request, ResponseHandler $responseHandler, Caller $caller)
     {
         $this->request = $request;
         $this->responseHandler = $responseHandler;
+        $this->caller = $caller;
     }
 
     /**
@@ -35,10 +40,11 @@ class Router
     /**
      * Finishes up routing.
      */
-    public function resolve()
+    public function resolve(): void
     {
         $activeRoute = ActiveRouteResolver::resolveRoutes($this->routes, $this->request);
-        $this->responseHandler->setResponseContent($activeRoute->getContent())
-            ->sendResponse();
+        $response = $this->caller->callByName($activeRoute->getCallable(), $this->request, $this->responseHandler);
+        $response->sendHeaders();
+        echo $response->getContent();
     }
 }

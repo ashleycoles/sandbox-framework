@@ -12,11 +12,11 @@ class RouteCreator
      * Public interface for creating a route.
      * @param string $URI
      * @param string $method
-     * @param string $content
+     * @param callable $callable
      * @return Route
      */
-    static public function createRoute(string $URI, string $method, string $content): RouteInterface
+    static public function createRoute(string $URI, string $method, callable $callable): RouteInterface
     {
-        return new Route($URI, $method, $content);
+        return new Route($URI, $method, $callable);
     }
 }

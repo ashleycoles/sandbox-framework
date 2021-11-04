@@ -1,10 +1,12 @@
 <?php
 
 use Sandbox\App\App;
+use Sandbox\Caller;
 use Sandbox\Request\RequestCreator;
 use Sandbox\Response\ResponseCreator;
 use Sandbox\Response\ResponseHandler;
 use Sandbox\Routing\Router;
+use TestApp\Controllers\TestController;
 
 require_once '../vendor/autoload.php';
 
@@ -16,15 +18,14 @@ $response = ResponseCreator::createResponse();
 
 $responseHandler = new ResponseHandler($response);
 
-$router = new Router($request, $responseHandler);
+$caller = new Caller();
+
+$router = new Router($request, $responseHandler, $caller);
 
 $app = new App($response, $request, $router);
 
 // Start routing
-$app->get('/home', '{"msg":"Hello world"}');
-$app->get('/test', '{"msg":"Does this actually work?"}');
-$app->get('/', '{"msg":"Cool!"}');
-
+$app->get('/test', new TestController());
 
 // End routing
 $app->done();

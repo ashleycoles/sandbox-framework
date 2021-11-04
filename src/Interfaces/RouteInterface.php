@@ -17,5 +17,5 @@ interface RouteInterface
     /**
      * @return string
      */
-    public function getContent(): string;
+    public function getCallable(): callable;
 }
