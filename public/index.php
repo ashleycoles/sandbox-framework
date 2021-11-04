@@ -12,8 +12,7 @@ $requestCreator = new RequestCreator();
 $request = $requestCreator->createRequest();
 
 
-$responseCreator = new ResponseCreator();
-$response = $responseCreator->createResponse();
+$response = ResponseCreator::createResponse();
 
 $responseSender = new ResponseHandler($response);
 
