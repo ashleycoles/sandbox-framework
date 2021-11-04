@@ -4,7 +4,9 @@
 namespace Sandbox\Routing;
 
 
-class Route
+use Sandbox\Interfaces\RouteInterface;
+
+class Route implements RouteInterface
 {
     protected string $URI;
     protected string $method;

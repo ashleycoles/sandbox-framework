@@ -4,6 +4,8 @@
 namespace Sandbox\Routing;
 
 
+use Sandbox\Interfaces\RouteInterface;
+
 class RouteCreator
 {
     /**
@@ -13,7 +15,7 @@ class RouteCreator
      * @param string $content
      * @return Route
      */
-    static public function createRoute(string $URI, string $method, string $content): Route
+    static public function createRoute(string $URI, string $method, string $content): RouteInterface
     {
         return new Route($URI, $method, $content);
     }

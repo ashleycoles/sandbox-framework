@@ -5,6 +5,7 @@ namespace Sandbox\Routing;
 
 
 use Sandbox\Interfaces\RequestInterface;
+use Sandbox\Interfaces\RouteInterface;
 use Sandbox\Response\ResponseHandler;
 
 class Router
@@ -24,9 +25,9 @@ class Router
     }
 
     /**
-     * @param Route $route
+     * @param RouteInterface $route
      */
-    public function registerRoute(Route $route): void
+    public function registerRoute(RouteInterface $route): void
     {
         $this->routes[] = $route;
     }
