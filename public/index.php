@@ -13,7 +13,7 @@ require_once '../vendor/autoload.php';
 $caller = new Caller();
 
 // Start dependencies
-$container = new Container($caller);
+$container = new Container();
 
 $container->add('RequestCreator', new \Sandbox\Factories\Request\RequestCreatorFactory());
 $container->add('ResponseCreator', new \Sandbox\Factories\Response\ResponseCreatorFactory());
