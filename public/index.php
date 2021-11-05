@@ -30,7 +30,8 @@ $app = new App($response, $request, $router);
 
 
 // Start routing
-$app->get('/test', 'TestController');
+$app->post('/test', 'TestController');
 
 // End routing
 $app->done();
+

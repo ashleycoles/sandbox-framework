@@ -13,4 +13,14 @@ interface RequestInterface
      * @return string
      */
     public function getMethod(): string;
+
+    /**
+     * @return array Containing GET data
+     */
+    public function getQueryParams(): array;
+
+    /**
+     * @return array Containing POST data
+     */
+    public function getPostBody(): array;
 }

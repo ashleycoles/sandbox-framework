@@ -8,7 +8,6 @@ use Sandbox\Interfaces\ContainerInterface;
 use Sandbox\Interfaces\RequestInterface;
 use Sandbox\Interfaces\ResponseInterface;
 use Sandbox\Interfaces\RouteInterface;
-use Sandbox\Response\ResponseHandler;
 
 class Router
 {

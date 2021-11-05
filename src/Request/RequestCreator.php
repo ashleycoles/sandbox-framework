@@ -16,8 +16,10 @@ class RequestCreator
     {
         $uri = $this->getRequestURI();
         $method = $this->getRequestMethod();
+        $queryParams = $this->getQueryParams();
+        $postBody = $this->getPostBody();
 
-        return new Request($uri, $method);
+        return new Request($uri, $method, $queryParams, $postBody);
     }
 
     /**
@@ -26,7 +28,7 @@ class RequestCreator
     protected function getRequestURI(): ?string
     {
         // TODO: What if it is null?
-        return $_SERVER['REQUEST_URI'] ?? null;
+        return $_SERVER['REQUEST_URI'] ? strtok($_SERVER['REQUEST_URI'], '?') : null;
     }
 
     /**
@@ -36,5 +38,21 @@ class RequestCreator
     {
         // TODO: What if it is null?
         return $_SERVER['REQUEST_METHOD'] ?? null;
+    }
+
+    /**
+     * @return array $_GET superglobal copy
+     */
+    protected function getQueryParams(): array
+    {
+        return $_GET;
+    }
+
+    /**
+     * @return array $_POST superglobal copy
+     */
+    protected function getPostBody(): array
+    {
+        return $_POST;
     }
 }
