@@ -24,8 +24,8 @@ class Container implements ContainerInterface
 
     /**
      * Adds a factory to the DIC
-     * @param string $callable
-     * @param callable $factory
+     * @param string $callable The DIC key
+     * @param callable $factory The object's factory, must be an invokable object
      * @throws ContainerException
      */
     public function add(string $callable, callable $factory): void
@@ -37,7 +37,7 @@ class Container implements ContainerInterface
 
     /**
      * Returns an instance from the DIC
-     * @param string $callable
+     * @param string $callable A DIC key
      * @return mixed
      * @throws ContainerException
      */

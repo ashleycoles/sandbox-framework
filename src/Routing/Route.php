@@ -14,9 +14,9 @@ class Route implements RouteInterface
 
     /**
      * Route constructor.
-     * @param string $URI
-     * @param string $method
-     * @param string $callable
+     * @param string $URI The route URI
+     * @param string $method A valid HTTP request method
+     * @param string $callable A DIC key
      */
     public function __construct(string $URI, string $method, string $callable)
     {

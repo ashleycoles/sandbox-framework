@@ -6,31 +6,32 @@ namespace Sandbox\Routing;
 
 use Sandbox\Interfaces\ContainerInterface;
 use Sandbox\Interfaces\RequestInterface;
+use Sandbox\Interfaces\ResponseInterface;
 use Sandbox\Interfaces\RouteInterface;
 use Sandbox\Response\ResponseHandler;
 
 class Router
 {
     protected RequestInterface $request;
-    protected ResponseHandler $responseHandler;
+    protected ResponseInterface $response;
     protected ContainerInterface $container;
     protected array $routes = [];
 
     /**
      * Router constructor.
      * @param RequestInterface $request
-     * @param ResponseHandler $responseHandler
+     * @param ResponseInterface $response
      * @param ContainerInterface $container
      */
-    public function __construct(RequestInterface $request, ResponseHandler $responseHandler, ContainerInterface $container)
+    public function __construct(RequestInterface $request, ResponseInterface $response, ContainerInterface $container)
     {
         $this->request = $request;
-        $this->responseHandler = $responseHandler;
+        $this->response = $response;
         $this->container = $container;
     }
 
     /**
-     * @param RouteInterface $route
+     * @param RouteInterface $route An object implementing the RouteInterface
      */
     public function registerRoute(RouteInterface $route): void
     {
@@ -45,7 +46,7 @@ class Router
         $activeRoute = ActiveRouteResolver::resolveRoutes($this->routes, $this->request);
         if ($activeRoute) {
             $controller = $this->container->get($activeRoute->getCallable());
-            $response = $controller($this->request, $this->responseHandler->getResponse());
+            $response = $controller($this->request, $this->response);
             echo $response->sendHeaders()->getContent();
         } else {
             http_response_code(404);

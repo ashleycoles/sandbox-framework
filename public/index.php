@@ -26,10 +26,10 @@ $responseCreator = $container->get('ResponseCreator');
 $request = $requestCreator->createRequest();
 $response = $responseCreator->createResponse();
 
-$responseHandler = new ResponseHandler($response);
 
 
-$router = new Router($request, $responseHandler, $container);
+
+$router = new Router($request, $response, $container);
 
 $app = new App($response, $request, $router);
 
