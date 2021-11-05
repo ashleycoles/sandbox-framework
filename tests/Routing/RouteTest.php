@@ -7,7 +7,6 @@ use Sandbox\Routing\Route;
 
 class RouteTest extends TestCase
 {
-    // TODO: Fix!
     public function testConstruct()
     {
         $result = new Route('/', 'GET', 'test');
