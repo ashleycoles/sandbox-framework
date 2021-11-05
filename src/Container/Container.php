@@ -4,7 +4,6 @@
 namespace Sandbox\Container;
 
 
-use Sandbox\Caller;
 use Sandbox\Interfaces\ContainerInterface;
 
 class Container implements ContainerInterface

@@ -5,6 +5,7 @@ namespace Sandbox\Response;
 
 
 use Sandbox\Interfaces\ResponseInterface;
+
 // TODO: Is this now useless?
 class ResponseHandler
 {

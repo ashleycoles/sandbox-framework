@@ -3,10 +3,8 @@
 use Sandbox\App\App;
 use Sandbox\Caller;
 use Sandbox\Container\Container;
-use Sandbox\Response\ResponseCreator;
 use Sandbox\Response\ResponseHandler;
 use Sandbox\Routing\Router;
-use TestApp\Controllers\TestController;
 
 require_once '../vendor/autoload.php';
 
