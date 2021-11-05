@@ -12,11 +12,13 @@ class RouteTest extends TestCase
         $result = new Route('/', 'GET', 'test');
         $this->assertInstanceOf(Route::class, $result);
     }
+
     public function testConstructMalforded()
     {
         $this->expectException(TypeError::class);
         new Route(['/'], 12, false);
     }
+
     public function testGetURI()
     {
         $sut = new Route('/', 'GET', 'test');

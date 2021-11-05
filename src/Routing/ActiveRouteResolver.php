@@ -18,7 +18,7 @@ class ActiveRouteResolver
     static public function resolveRoutes(array $routes, RequestInterface $request): ?RouteInterface
     {
         /* @var $route Route */
-        foreach($routes as $route) {
+        foreach ($routes as $route) {
             if (
                 self::resolveMethod($route->getMethod(), $request->getMethod()) &&
                 self::resolveURI($route->getURI(), $request->getURI())

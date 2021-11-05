@@ -30,7 +30,7 @@ class Container implements ContainerInterface
      */
     public function add(string $callable, callable $factory): void
     {
-        if (!array_key_exists($callable, $this->items)){
+        if (!array_key_exists($callable, $this->items)) {
             $this->items[$callable] = $factory;
         } else throw new ContainerException('Callable already exists');
     }
