@@ -4,6 +4,7 @@
 namespace Sandbox\Request;
 
 
+use Sandbox\Exceptions\RequestException;
 use Sandbox\Interfaces\RequestInterface;
 
 class RequestCreator
@@ -23,21 +24,23 @@ class RequestCreator
     }
 
     /**
-     * @return string|null
+     * @return string
+     * @throws RequestException
      */
-    protected function getRequestURI(): ?string
+    protected function getRequestURI(): string
     {
-        // TODO: What if it is null?
-        return $_SERVER['REQUEST_URI'] ? strtok($_SERVER['REQUEST_URI'], '?') : null;
+        if (!$_SERVER['REQUEST_URI']) throw new RequestException('Unable to get REQUEST_URI');
+        return strtok($_SERVER['REQUEST_URI'], '?');
     }
 
     /**
-     * @return string|null
+     * @return string
+     * @throws RequestException
      */
-    protected function getRequestMethod(): ?string
+    protected function getRequestMethod(): string
     {
-        // TODO: What if it is null?
-        return $_SERVER['REQUEST_METHOD'] ?? null;
+        if (!$_SERVER['REQUEST_METHOD']) throw new RequestException('Unable to get REQUEST_METHOD');
+        return $_SERVER['REQUEST_METHOD'];
     }
 
     /**
