@@ -11,10 +11,10 @@ use TestApp\Controllers\TestController;
 require_once '../vendor/autoload.php';
 
 $requestCreator = new RequestCreator();
+$responseCreator = new ResponseCreator();
+
 $request = $requestCreator->createRequest();
-
-
-$response = ResponseCreator::createResponse();
+$response = $responseCreator->createResponse();
 
 $responseHandler = new ResponseHandler($response);
 
