@@ -4,6 +4,7 @@
 namespace Sandbox\Container;
 
 
+use Sandbox\Exceptions\ContainerException;
 use Sandbox\Interfaces\ContainerInterface;
 
 class Container implements ContainerInterface
@@ -25,24 +26,28 @@ class Container implements ContainerInterface
      * Adds a factory to the DIC
      * @param string $callable
      * @param callable $factory
+     * @throws ContainerException
      */
     public function add(string $callable, callable $factory): void
     {
         if (!array_key_exists($callable, $this->items)){
             $this->items[$callable] = $factory;
-        }
+        } else throw new ContainerException('Callable already exists');
     }
 
     /**
      * Returns an instance from the DIC
      * @param string $callable
      * @return mixed
+     * @throws ContainerException
      */
     public function get(string $callable)
     {
+        if (!$this->built) throw new ContainerException('Container has not yet been built');
         if (array_key_exists($callable, $this->instances)) {
             return $this->instances[$callable];
         }
+        throw new ContainerException('Callable not found.');
     }
 
     /**
@@ -55,7 +60,8 @@ class Container implements ContainerInterface
                 // Calls the factory, passing in the container object
                 // Allows other factories to access the container for DI
                 $this->instances[$callable] = $factory($this);
-            }
+            } else throw new ContainerException('Factory is not callable.');
         }
+        $this->built = true;
     }
 }
