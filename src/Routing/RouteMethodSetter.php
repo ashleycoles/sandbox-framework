@@ -30,9 +30,9 @@ class RouteMethodSetter
     /**
      * Creates a GET route.
      * @param string $URI
-     * @param callable $callable
+     * @param string $callable
      */
-    public function get(string $URI, callable $callable): void
+    public function get(string $URI, string $callable): void
     {
         $route = RouteCreator::createRoute($URI, 'GET', $callable);
         $this->router->registerRoute($route);
@@ -41,6 +41,7 @@ class RouteMethodSetter
     /**
      * Creates a Post route.
      * @param string $URI
+     * @param string $content
      */
     public function post(string $URI, string $content): void
     {
@@ -51,6 +52,7 @@ class RouteMethodSetter
     /**
      * Creates a PUT route.
      * @param string $URI
+     * @param string $content
      */
     public function put(string $URI, string $content): void
     {
@@ -61,6 +63,7 @@ class RouteMethodSetter
     /**
      * Creates a DELETE route.
      * @param string $URI
+     * @param string $content
      */
     public function delete(string $URI, string $content): void
     {

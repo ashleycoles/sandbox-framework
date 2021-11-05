@@ -10,12 +10,17 @@ use TestApp\Controllers\TestController;
 
 require_once '../vendor/autoload.php';
 
+$caller = new Caller();
+
 // Start dependencies
-$container = new Container();
+$container = new Container($caller);
 
 $container->add('RequestCreator', new \Sandbox\Factories\Request\RequestCreatorFactory());
 $container->add('ResponseCreator', new \Sandbox\Factories\Response\ResponseCreatorFactory());
+//TestApp dependencies
+$container->add('TestController', new \TestApp\Factories\Controllers\TestControllerFactory());
 
+$container->build();
 
 $requestCreator = $container->get('RequestCreator');
 $responseCreator = $container->get('ResponseCreator');
@@ -25,9 +30,8 @@ $response = $responseCreator->createResponse();
 
 $responseHandler = new ResponseHandler($response);
 
-$caller = new Caller();
 
-$router = new Router($request, $responseHandler, $caller);
+$router = new Router($request, $responseHandler, $container);
 
 $app = new App($response, $request, $router);
 
@@ -35,7 +39,7 @@ $app = new App($response, $request, $router);
 
 
 // Start routing
-$app->get('/test', new TestController());
+$app->get('/test', 'TestController');
 
 // End routing
 $app->done();

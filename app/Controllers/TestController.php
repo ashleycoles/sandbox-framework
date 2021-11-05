@@ -4,10 +4,11 @@
 namespace TestApp\Controllers;
 
 
+use Sandbox\Interfaces\ControllerInterface;
 use Sandbox\Interfaces\RequestInterface as Request;
 use Sandbox\Interfaces\ResponseInterface as Response;
 
-class TestController
+class TestController implements ControllerInterface
 {
     /**
      * @param Request $req
