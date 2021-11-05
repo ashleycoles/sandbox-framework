@@ -18,7 +18,11 @@ class TestController implements ControllerInterface
     public function __invoke(Request $req, Response $res): Response
     {
         $postData = json_encode($req->getPostBody());
+        $getData = json_encode($req->getQueryParams());
         return $res->setHeader('Content-Type: application/json')
-            ->setContent('{"msg": "Odds on?", "data":' . $postData . ' }');
+            ->setContent('{
+            "msg": "Odds on?",
+            "postData":' . $postData . ',
+            "getData":' . $getData . '}');
     }
 }
