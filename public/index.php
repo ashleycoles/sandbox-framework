@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Sandbox\App\App;
 use Sandbox\Container\Container;
 use Sandbox\Routing\Router;
