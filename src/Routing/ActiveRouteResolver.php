@@ -15,7 +15,7 @@ class ActiveRouteResolver
      * @param RequestInterface $request
      * @return RouteInterface
      */
-    static public function resolveRoutes(array $routes, RequestInterface $request): RouteInterface
+    static public function resolveRoutes(array $routes, RequestInterface $request): ?RouteInterface
     {
         /* @var $route Route */
         foreach($routes as $route) {
@@ -26,7 +26,7 @@ class ActiveRouteResolver
                 return $route;
             }
         }
-        // TODO: add something for 404
+        return null;
     }
 
     /**

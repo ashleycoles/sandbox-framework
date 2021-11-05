@@ -43,8 +43,13 @@ class Router
     public function resolve(): void
     {
         $activeRoute = ActiveRouteResolver::resolveRoutes($this->routes, $this->request);
-        $response = $this->caller->callByName($activeRoute->getCallable(), $this->request, $this->responseHandler);
-        $response->sendHeaders();
-        echo $response->getContent();
+        if ($activeRoute) {
+            $response = $this->caller->callByName($activeRoute->getCallable(), $this->request, $this->responseHandler);
+            $response->sendHeaders();
+            echo $response->getContent();
+        } else {
+            http_response_code(404);
+        }
+
     }
 }

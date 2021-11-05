@@ -16,8 +16,7 @@ class TestController
      */
     public function __invoke(Request $req, Response $res): Response
     {
-        $res->setHeader('Content-Type: application/json');
-        $res->setContent('{"msg": "Odds on?"}');
-        return $res;
+        return $res->setHeader('Content-Type: application/json')
+            ->setContent('{"msg": "Odds on?"}');
     }
 }
