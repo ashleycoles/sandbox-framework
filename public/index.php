@@ -13,18 +13,15 @@ require_once '../vendor/autoload.php';
 $container = new Container();
 
 $container->add('RequestCreator', new \Sandbox\Factories\Request\RequestCreatorFactory());
-$container->add('ResponseCreator', new \Sandbox\Factories\Response\ResponseCreatorFactory());
+$container->add('Response', new \Sandbox\Factories\Response\ResponseFactory());
 //TestApp dependencies
 $container->add('TestController', new \TestApp\Factories\Controllers\TestControllerFactory());
 
 $container->build();
 
+$response = $container->get('Response');
 $requestCreator = $container->get('RequestCreator');
-$responseCreator = $container->get('ResponseCreator');
-
 $request = $requestCreator->createRequest();
-$response = $responseCreator->createResponse();
-
 
 $router = new Router($request, $response, $container);
 
