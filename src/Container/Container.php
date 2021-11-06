@@ -7,13 +7,14 @@ namespace Sandbox\Container;
 
 use Sandbox\Exceptions\ContainerException;
 use Sandbox\Interfaces\ContainerInterface;
+use Sandbox\Interfaces\FactoryInterface;
 
 class Container implements ContainerInterface
 {
     /**
      * @var array An array of factories
      */
-    protected array $items = [];
+    protected array $factories = [];
     /**
      * @var array An array of instances created by calling factories in $items
      */
@@ -25,44 +26,51 @@ class Container implements ContainerInterface
 
     /**
      * Adds a factory to the DIC
-     * @param string $callable The DIC key
+     * @param string $DICkey The DIC key
      * @param callable $factory The object's factory, must be an invokable object
      * @throws ContainerException
      */
-    public function add(string $callable, callable $factory): void
+    public function add(string $DICkey, FactoryInterface $factory): void
     {
-        if (!array_key_exists($callable, $this->items)) {
-            $this->items[$callable] = $factory;
-        } else throw new ContainerException('Callable already exists');
+        if ($this->built) throw new ContainerException('Contain has already been built.');
+
+        if (!array_key_exists($DICkey, $this->factories)) {
+            $this->factories[$DICkey] = $factory;
+        } else throw new ContainerException('Callable already exists.');
     }
 
     /**
      * Returns an instance from the DIC
-     * @param string $callable A DIC key
+     * @param string $DICkey A DIC key
      * @return mixed
      * @throws ContainerException
      */
-    public function get(string $callable)
+    public function get(string $DICkey)
     {
-        if (!$this->built) throw new ContainerException('Container has not yet been built');
-        if (array_key_exists($callable, $this->instances)) {
-            return $this->instances[$callable];
-        }
-        throw new ContainerException('Callable not found.');
+        if (!$this->built) throw new ContainerException('Container has not yet been built.');
+
+        if (array_key_exists($DICkey, $this->instances)) {
+            return $this->instances[$DICkey];
+        } throw new ContainerException('Callable not found.');
     }
 
     /**
      * Builds the container - calls all factories and registers instances
+     * The container may only be built once
+     * @throws ContainerException
      */
     public function build(): void
     {
-        foreach ($this->items as $callable => $factory) {
+        if ($this->built) throw new ContainerException('Contain has already been built.');
+
+        foreach ($this->factories as $DICkey => $factory) {
             if (is_callable($factory)) {
                 // Calls the factory, passing in the container object
                 // Allows other factories to access the container for DI
-                $this->instances[$callable] = $factory($this);
+                $this->instances[$DICkey] = $factory($this);
             } else throw new ContainerException('Factory is not callable.');
         }
+        // Mark the container as built
         $this->built = true;
     }
 }

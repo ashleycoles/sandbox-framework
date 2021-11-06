@@ -6,9 +6,10 @@ namespace Sandbox\Factories\Request;
 
 
 use Sandbox\Interfaces\ContainerInterface;
+use Sandbox\Interfaces\FactoryInterface;
 use Sandbox\Request\RequestCreator;
 
-class RequestCreatorFactory
+class RequestCreatorFactory implements FactoryInterface
 {
     public function __invoke(ContainerInterface $container): RequestCreator
     {

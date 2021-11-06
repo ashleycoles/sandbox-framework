@@ -6,17 +6,17 @@ interface ContainerInterface
 {
     /**
      * Adds a factory to the DIC
-     * @param string $callable
+     * @param string $DICkey
      * @param callable $factory
      */
-    public function add(string $callable, callable $factory): void;
+    public function add(string $DICkey, FactoryInterface $factory): void;
 
     /**
      * Returns an instance from the DIC
-     * @param string $callable
+     * @param string $DICkey
      * @return mixed
      */
-    public function get(string $callable);
+    public function get(string $DICkey);
 
     /**
      * Builds the container - calls all factories and registers instances
