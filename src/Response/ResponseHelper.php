@@ -28,4 +28,17 @@ class ResponseHelper extends Response
             ->sendHeaders();
         return $this;
     }
+
+    /**
+     * Respond with a redirect.
+     * @param string $location
+     * @return ResponseInterface
+     */
+    public function respondWithRedirect(string $location): ResponseInterface
+    {
+        $this->setContent('')
+            ->setHeader('Location: ' . $location)
+            ->sendHeaders();
+        return $this;
+    }
 }

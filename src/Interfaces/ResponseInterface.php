@@ -2,8 +2,6 @@
 
 namespace Sandbox\Interfaces;
 
-use Sandbox\Response\Response;
-
 interface ResponseInterface
 {
     /**
@@ -11,13 +9,13 @@ interface ResponseInterface
      * @param string $header
      * @return $this
      */
-    public function setHeader(string $header): Response;
+    public function setHeader(string $header): ResponseInterface;
 
     /**
      * Sends all the request headers
      * @param string $headers
      */
-    public function sendHeaders(): Response;
+    public function sendHeaders(): ResponseInterface;
 
     /**
      * @return string
@@ -26,7 +24,7 @@ interface ResponseInterface
 
     /**
      * @param string $content
-     * @return Response
+     * @return ResponseInterface
      */
-    public function setContent(string $content): Response;
+    public function setContent(string $content): ResponseInterface;
 }
