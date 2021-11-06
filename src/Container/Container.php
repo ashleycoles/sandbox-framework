@@ -7,6 +7,7 @@ namespace Sandbox\Container;
 
 use Sandbox\Exceptions\ContainerException;
 use Sandbox\Interfaces\ContainerInterface;
+use Sandbox\Interfaces\FactoryInterface;
 
 class Container implements ContainerInterface
 {
@@ -29,7 +30,7 @@ class Container implements ContainerInterface
      * @param callable $factory The object's factory, must be an invokable object
      * @throws ContainerException
      */
-    public function add(string $DICkey, callable $factory): void
+    public function add(string $DICkey, FactoryInterface $factory): void
     {
         if ($this->built) throw new ContainerException('Contain has already been built.');
 

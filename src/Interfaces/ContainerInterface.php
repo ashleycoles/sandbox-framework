@@ -9,7 +9,7 @@ interface ContainerInterface
      * @param string $DICkey
      * @param callable $factory
      */
-    public function add(string $DICkey, callable $factory): void;
+    public function add(string $DICkey, FactoryInterface $factory): void;
 
     /**
      * Returns an instance from the DIC
