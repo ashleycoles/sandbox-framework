@@ -6,10 +6,16 @@ namespace Sandbox\Response;
 
 
 use Exception;
+use Sandbox\Interfaces\ResponseInterface;
 
 class ResponseHelper extends Response
 {
-    public function respondWithJSON(string $data)
+    /**
+     * @param array|object $data
+     * @return ResponseInterface
+     * @throws Exception
+     */
+    public function respondWithJSON($data): ResponseInterface
     {
         $json = json_encode($data);
 
@@ -17,6 +23,9 @@ class ResponseHelper extends Response
             throw new Exception('Cannot JSON encode data');
         }
 
-        $this->sendHeaders();
+        $this->setContent($json)
+            ->setHeader('Content-Type: application/json')
+            ->sendHeaders();
+        return $this;
     }
 }

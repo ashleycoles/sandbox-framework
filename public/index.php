@@ -14,12 +14,14 @@ $container = new Container();
 
 $container->add('RequestCreator', new \Sandbox\Factories\Request\RequestCreatorFactory());
 $container->add('Response', new \Sandbox\Factories\Response\ResponseFactory());
+$container->add('ResponseHelper', new \Sandbox\Factories\Response\ResponseHelperFactory());
 //TestApp dependencies
 $container->add('TestController', new \TestApp\Factories\Controllers\TestControllerFactory());
 
 $container->build();
 
-$response = $container->get('Response');
+//$response = $container->get('Response');
+$response = $container->get('ResponseHelper');
 $requestCreator = $container->get('RequestCreator');
 $request = $requestCreator->createRequest();
 
