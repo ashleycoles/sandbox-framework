@@ -17,7 +17,7 @@ class Response implements ResponseInterface
      * @param string $header
      * @return $this
      */
-    public function setHeader(string $header): Response
+    public function setHeader(string $header): ResponseInterface
     {
         $this->headers[] = $header;
         return $this;
@@ -27,7 +27,7 @@ class Response implements ResponseInterface
      * Sends all the request headers
      * @param string $headers
      */
-    public function sendHeaders(): Response
+    public function sendHeaders(): ResponseInterface
     {
         foreach ($this->headers as $header) {
             header($header);
@@ -45,11 +45,21 @@ class Response implements ResponseInterface
 
     /**
      * @param string $content
-     * @return Response
+     * @return ResponseInterface
      */
-    public function setContent(string $content): Response
+    public function setContent(string $content): ResponseInterface
     {
         $this->content = $content;
+        return $this;
+    }
+
+    /**
+     * @param int $status
+     * @return ResponseInterface
+     */
+    public function setStatus(int $status = 200): ResponseInterface
+    {
+        http_response_code($status);
         return $this;
     }
 }

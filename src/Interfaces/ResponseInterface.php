@@ -27,4 +27,10 @@ interface ResponseInterface
      * @return ResponseInterface
      */
     public function setContent(string $content): ResponseInterface;
+
+    /**
+     * @param int $status
+     * @return ResponseInterface
+     */
+    public function setStatus(int $status): ResponseInterface;
 }
