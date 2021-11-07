@@ -15,7 +15,7 @@ class RouteTest extends TestCase
         $this->assertInstanceOf(Route::class, $result);
     }
 
-    public function testConstructMalforded()
+    public function testConstructMalformed()
     {
         $this->expectException(TypeError::class);
         new Route(['/'], 12, false);
