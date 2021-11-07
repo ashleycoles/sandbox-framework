@@ -13,6 +13,7 @@ class TestControllerFactory implements FactoryInterface
 {
     public function __invoke(ContainerInterface $container): TestController
     {
-        return new TestController();
+        $renderer = $container->get('Renderer');
+        return new TestController($renderer);
     }
 }

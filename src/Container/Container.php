@@ -32,11 +32,11 @@ class Container implements ContainerInterface
      */
     public function add(string $DICkey, FactoryInterface $factory): void
     {
-        if ($this->built) throw new ContainerException('Contain has already been built.');
-
         if (!array_key_exists($DICkey, $this->factories)) {
             $this->factories[$DICkey] = $factory;
         } else throw new ContainerException('Callable already exists.');
+
+        $this->build();
     }
 
     /**
@@ -61,14 +61,13 @@ class Container implements ContainerInterface
      */
     public function build(): void
     {
-        if ($this->built) throw new ContainerException('Contain has already been built.');
-
         foreach ($this->factories as $DICkey => $factory) {
-            if (is_callable($factory)) {
+            if (!is_callable($factory))throw new ContainerException('Factory is not callable.');
+            if (!array_key_exists($DICkey, $this->instances)) {
                 // Calls the factory, passing in the container object
                 // Allows other factories to access the container for DI
                 $this->instances[$DICkey] = $factory($this);
-            } else throw new ContainerException('Factory is not callable.');
+            }
         }
         // Mark the container as built
         $this->built = true;

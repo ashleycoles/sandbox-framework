@@ -9,29 +9,6 @@ use Sandbox\Factories\Request\RequestCreatorFactory;
 
 class ContainerTest extends TestCase
 {
-    public function testContainerBuildWhenAlreadyBuilt()
-    {
-        $container = new Sandbox\Container\Container();
-        $containerReflection = new \ReflectionClass($container);
-        $builtProperty = $containerReflection->getProperty('built');
-        $builtProperty->setAccessible(true);
-        $builtProperty->setValue($container, true);
-        $this->expectException(ContainerException::class);
-        $container->build();
-    }
-
-    public function testContainerAddWhenAlreadyBuilt()
-    {
-        $container = new Sandbox\Container\Container();
-        $containerReflection = new \ReflectionClass($container);
-        $builtProperty = $containerReflection->getProperty('built');
-        $builtProperty->setAccessible(true);
-        $builtProperty->setValue($container, true);
-        $mockFactory = $this->createMock(RequestCreatorFactory::class);
-        $this->expectException(ContainerException::class);
-        $container->add('test', $mockFactory);
-    }
-
     public function testContainerAddWhenAlreadyAdded()
     {
         $container = new Sandbox\Container\Container();
