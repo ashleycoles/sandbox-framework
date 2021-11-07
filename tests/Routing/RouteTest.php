@@ -27,4 +27,18 @@ class RouteTest extends TestCase
         $result = $sut->getURI();
         $this->assertEquals($result, '/');
     }
+
+    public function testGetMethod()
+    {
+        $sut = new Route('/', 'GET', 'test');
+        $result = $sut->getMethod();
+        $this->assertEquals($result, 'GET');
+    }
+
+    public function testGetCallable()
+    {
+        $sut = new Route('/', 'GET', 'test');
+        $result = $sut->getCallable();
+        $this->assertEquals($result, 'test');
+    }
 }
