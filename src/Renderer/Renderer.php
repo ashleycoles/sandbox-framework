@@ -6,6 +6,7 @@ declare(strict_types=1);
 namespace Sandbox\Renderer;
 
 
+use Sandbox\Exceptions\RendererException;
 use Sandbox\Interfaces\ResponseInterface;
 
 class Renderer
@@ -21,18 +22,23 @@ class Renderer
         $this->templateDirectory = $templateDirectory;
     }
 
+    /**
+     * Renders the given template.
+     * @param string $templateName
+     * @param array $content of data - each key becomes a variable available in the template
+     * @return string
+     * @throws RendererException
+     */
     public function renderTemplate(string $templateName, array $content): string
     {
         $templatePath = $this->templateDirectory . $templateName;
         extract($content);
-        ob_start();
         if (file_exists($templatePath)) {
+            ob_start();
             require_once ($templatePath);
-        }
-        $output = ob_get_contents();
-        ob_end_clean();
-        return $output;
+            $output = ob_get_contents();
+            ob_end_clean();
+            return $output;
+        } throw new RendererException('Requested template does not exist.');
     }
-
-
 }
