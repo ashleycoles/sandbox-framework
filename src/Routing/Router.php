@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Sandbox\Routing;
 
+use Sandbox\Exceptions\RouterException;
 use Sandbox\Interfaces\ContainerInterface;
 use Sandbox\Interfaces\RequestInterface;
 use Sandbox\Interfaces\ResponseInterface;
@@ -48,6 +49,7 @@ class Router extends ActiveRouteResolver
             echo $response->sendHeaders()->getContent();
         } else {
             http_response_code(404);
+            throw new RouterException('Page not found.');
         }
     }
 }
