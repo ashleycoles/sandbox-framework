@@ -23,7 +23,15 @@ class Renderer
 
     public function renderTemplate(string $templateName, array $content): string
     {
-
+        $templatePath = $this->templateDirectory . $templateName;
+        extract($content);
+        ob_start();
+        if (file_exists($templatePath)) {
+            require_once ($templatePath);
+        }
+        $output = ob_get_contents();
+        ob_end_clean();
+        return $output;
     }
 
 

@@ -9,7 +9,7 @@ use Sandbox\Interfaces\ResponseInterface;
 
 class Response implements ResponseInterface
 {
-    protected array $headers;
+    protected array $headers = [];
     protected string $content;
 
     /**

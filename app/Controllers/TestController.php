@@ -32,12 +32,10 @@ class TestController implements ControllerInterface
      */
     public function __invoke(Request $req, Response $res): Response
     {
-        $content = [
-            'msg' => 'Odds on?',
-            'postData' => $req->getPostBody(),
-            'getData' => $req->getQueryParams()
-        ];
+        $content = $this->renderer->renderTemplate('Home.phtml',['test' => 'Hello World']);
 
-        return $res->respondWithJSON($content);
+        $res->setContent($content);
+        return $res;
+
     }
 }
