@@ -11,4 +11,4 @@ A very crude and sucky PHP framework put together as a learning exercise
 - `composer start`: Runs a basic php web server
 - `composer test`: Runs the PHPUnit test suite
 - `composer cs`: Runs phpcs
-- `composer cbf` Runs phpcbf
+- `composer cbf`: Runs phpcbf
