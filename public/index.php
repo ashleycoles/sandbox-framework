@@ -9,17 +9,15 @@ use Sandbox\Routing\Router;
 require_once '../vendor/autoload.php';
 
 
+
 // Start dependencies
 $container = new Container();
 
-$container->add('RequestCreator', new \Sandbox\Factories\Request\RequestCreatorFactory());
-$container->add('Response', new \Sandbox\Factories\Response\ResponseFactory());
-$container->add('ResponseHelper', new \Sandbox\Factories\Response\ResponseHelperFactory());
-$container->add('Renderer', new \Sandbox\Factories\Renderer\RendererFactory());
+$dependencies = require_once '../src/Settings/dependencies.php';
+$dependencies($container);
 //TestApp dependencies
-$container->add('TestController', new \TestApp\Factories\Controllers\TestControllerFactory());
-
-//$container->build();
+$appDependencies = require_once '../app/Settings/dependencies.php';
+$appDependencies($container);
 
 //$response = $container->get('Response');
 $response = $container->get('ResponseHelper');
@@ -27,12 +25,10 @@ $requestCreator = $container->get('RequestCreator');
 $request = $requestCreator->createRequest();
 
 $router = new Router($request, $response, $container);
-
 $app = new App($response, $request, $router);
 
-
-// Start routing
-$app->get('/test', 'TestController');
+$routes = require_once '../app/Settings/routes.php';
+$routes($app);
 
 // End routing
 $app->done();
