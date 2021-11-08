@@ -7,7 +7,9 @@
   },
   "scripts": {
     "start": "php -S localhost:8080 -t public",
-    "test": "phpunit tests/"
+    "test": "phpunit tests/",
+    "cs": "php phpcs.phar src",
+    "cbf": "php phpcbf.phar src"
   },
   "require": {
     "ext-json": "*"
