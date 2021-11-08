@@ -7,7 +7,7 @@ namespace Sandbox\Routing;
 use Sandbox\Interfaces\RequestInterface;
 use Sandbox\Interfaces\RouteInterface;
 
-class ActiveRouteResolver
+abstract class ActiveRouteResolver
 {
     protected array $routes = [];
     protected RequestInterface $request;
