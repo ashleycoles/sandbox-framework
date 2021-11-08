@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Sandbox\Routing;
 
-
 use Sandbox\Interfaces\ContainerInterface;
 use Sandbox\Interfaces\RequestInterface;
 use Sandbox\Interfaces\ResponseInterface;
@@ -19,8 +18,9 @@ class Router
 
     /**
      * Router constructor.
-     * @param RequestInterface $request
-     * @param ResponseInterface $response
+     *
+     * @param RequestInterface   $request
+     * @param ResponseInterface  $response
      * @param ContainerInterface $container
      */
     public function __construct(RequestInterface $request, ResponseInterface $response, ContainerInterface $container)

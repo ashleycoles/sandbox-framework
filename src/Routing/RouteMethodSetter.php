@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Sandbox\Routing;
 
-
 use Sandbox\Interfaces\RequestInterface;
 use Sandbox\Interfaces\ResponseInterface;
 
@@ -17,9 +16,10 @@ class RouteMethodSetter
 
     /**
      * RouteMethodSetter constructor.
+     *
      * @param ResponseInterface $response
-     * @param RequestInterface $request
-     * @param Router $router
+     * @param RequestInterface  $request
+     * @param Router            $router
      */
     public function __construct(ResponseInterface $response, RequestInterface $request, Router $router)
     {
@@ -30,6 +30,7 @@ class RouteMethodSetter
 
     /**
      * Creates a GET route.
+     *
      * @param string $URI
      * @param string $callable
      */
@@ -41,6 +42,7 @@ class RouteMethodSetter
 
     /**
      * Creates a Post route.
+     *
      * @param string $URI
      * @param string $content
      */
@@ -52,6 +54,7 @@ class RouteMethodSetter
 
     /**
      * Creates a PUT route.
+     *
      * @param string $URI
      * @param string $content
      */
@@ -63,6 +66,7 @@ class RouteMethodSetter
 
     /**
      * Creates a DELETE route.
+     *
      * @param string $URI
      * @param string $content
      */

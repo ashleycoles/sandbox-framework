@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-
 namespace Sandbox\Factories\Renderer;
-
 
 use Sandbox\Interfaces\ContainerInterface;
 use Sandbox\Interfaces\FactoryInterface;

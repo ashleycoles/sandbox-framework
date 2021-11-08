@@ -23,7 +23,8 @@ interface RequestInterface
 
     /**
      * Returns a single query param by name
-     * @param string $param
+     *
+     * @param  string $param
      * @return mixed
      * @throws RequestException
      */
@@ -36,7 +37,8 @@ interface RequestInterface
 
     /**
      * Returns a single item from post data by name
-     * @param string $name
+     *
+     * @param  string $name
      * @throws RequestException
      */
     public function getPostBodyItem(string $name);

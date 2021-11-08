@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Sandbox\Container;
 
-
 use Sandbox\Exceptions\ContainerException;
 use Sandbox\Interfaces\ContainerInterface;
 use Sandbox\Interfaces\FactoryInterface;
@@ -26,28 +25,34 @@ class Container implements ContainerInterface
 
     /**
      * Adds a factory to the DIC
-     * @param string $DICkey The DIC key
-     * @param callable $factory The object's factory, must be an invokable object
+     *
+     * @param  string   $DICkey  The DIC key
+     * @param  callable $factory The object's factory, must be an invokable object
      * @throws ContainerException
      */
     public function add(string $DICkey, FactoryInterface $factory): void
     {
         if (!array_key_exists($DICkey, $this->factories)) {
             $this->factories[$DICkey] = $factory;
-        } else throw new ContainerException('Callable already exists.');
+        } else {
+            throw new ContainerException('Callable already exists.');
+        }
 
         $this->build();
     }
 
     /**
      * Returns an instance from the DIC
-     * @param string $DICkey A DIC key
+     *
+     * @param  string $DICkey A DIC key
      * @return mixed
      * @throws ContainerException
      */
     public function get(string $DICkey)
     {
-        if (!$this->built) throw new ContainerException('Container has not yet been built.');
+        if (!$this->built) {
+            throw new ContainerException('Container has not yet been built.');
+        }
 
         if (array_key_exists($DICkey, $this->instances)) {
             return $this->instances[$DICkey];
@@ -57,12 +62,15 @@ class Container implements ContainerInterface
     /**
      * Builds the container - calls all factories and registers instances
      * The container may only be built once
+     *
      * @throws ContainerException
      */
     public function build(): void
     {
         foreach ($this->factories as $DICkey => $factory) {
-            if (!is_callable($factory))throw new ContainerException('Factory is not callable.');
+            if (!is_callable($factory)) {
+                throw new ContainerException('Factory is not callable.');
+            }
             if (!array_key_exists($DICkey, $this->instances)) {
                 // Calls the factory, passing in the container object
                 // Allows other factories to access the container for DI

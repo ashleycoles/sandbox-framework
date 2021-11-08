@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-
 namespace Sandbox\Renderer;
-
 
 use Sandbox\Exceptions\RendererException;
 
@@ -14,6 +12,7 @@ class Renderer
 
     /**
      * Renderer constructor.
+     *
      * @param string $templateDirectory
      */
     public function __construct(string $templateDirectory)
@@ -23,8 +22,9 @@ class Renderer
 
     /**
      * Renders the given template.
-     * @param string $templateName
-     * @param array $content of data - each key becomes a variable available in the template
+     *
+     * @param  string $templateName
+     * @param  array  $content      of data - each key becomes a variable available in the template
      * @return string
      * @throws RendererException
      */
@@ -34,7 +34,7 @@ class Renderer
         extract($content);
         if (file_exists($templatePath)) {
             ob_start();
-            require_once ($templatePath);
+            include_once $templatePath;
             $output = ob_get_contents();
             ob_end_clean();
             return $output;

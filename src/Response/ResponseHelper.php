@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace Sandbox\Response;
 
-
 use Sandbox\Exceptions\ResponseException;
 use Sandbox\Interfaces\ResponseInterface;
 
 class ResponseHelper extends Response
 {
     /**
-     * @param array|object $data
+     * @param  array|object $data
      * @return ResponseInterface
      * @throws ResponseException
      */
@@ -31,7 +30,8 @@ class ResponseHelper extends Response
 
     /**
      * Respond with a redirect.
-     * @param string $location
+     *
+     * @param  string $location
      * @return ResponseInterface
      */
     public function respondWithRedirect(string $location): ResponseInterface
