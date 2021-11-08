@@ -9,12 +9,10 @@ use Sandbox\Interfaces\RequestInterface;
 use Sandbox\Interfaces\ResponseInterface;
 use Sandbox\Interfaces\RouteInterface;
 
-class Router
+class Router extends ActiveRouteResolver
 {
-    protected RequestInterface $request;
     protected ResponseInterface $response;
     protected ContainerInterface $container;
-    protected array $routes = [];
 
     /**
      * Router constructor.
@@ -43,7 +41,7 @@ class Router
      */
     public function resolve(): void
     {
-        $activeRoute = ActiveRouteResolver::resolveRoutes($this->routes, $this->request);
+        $activeRoute = $this->resolveRoutes();
         if ($activeRoute) {
             $controller = $this->container->get($activeRoute->getCallable());
             $response = $controller($this->request, $this->response);

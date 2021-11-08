@@ -9,6 +9,10 @@ use Sandbox\Interfaces\RouteInterface;
 
 class ActiveRouteResolver
 {
+    protected array $routes = [];
+    protected RequestInterface $request;
+
+
     /**
      * Compares a Request with the array of Route objects.
      *
@@ -16,13 +20,13 @@ class ActiveRouteResolver
      * @param  RequestInterface $request
      * @return RouteInterface
      */
-    public static function resolveRoutes(array $routes, RequestInterface $request): ?RouteInterface
+    public function resolveRoutes(): ?RouteInterface
     {
         /* @var $route Route */
-        foreach ($routes as $route) {
+        foreach ($this->routes as $route) {
             if (
-                self::resolveMethod($route->getMethod(), $request->getMethod())
-                && self::resolveURI($route->getURI(), $request->getURI())
+                $this->resolveMethod($route->getMethod(), $this->request->getMethod())
+                && $this->resolveURI($route->getURI(), $this->request->getURI())
             ) {
                 return $route;
             }
@@ -37,7 +41,7 @@ class ActiveRouteResolver
      * @param  string $requestMethod
      * @return bool
      */
-    protected static function resolveMethod(string $routeMethod, string $requestMethod): bool
+    protected function resolveMethod(string $routeMethod, string $requestMethod): bool
     {
         return $routeMethod === $requestMethod ? true : false;
     }
@@ -49,7 +53,7 @@ class ActiveRouteResolver
      * @param  string $requestURI
      * @return bool
      */
-    protected static function resolveURI(string $routeURI, string $requestURI): bool
+    protected function resolveURI(string $routeURI, string $requestURI): bool
     {
         return $routeURI === $requestURI ? true : false;
     }

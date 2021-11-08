@@ -16,7 +16,6 @@ class ContainerTest extends TestCase
         $container->add('test', $mockFactory);
         $this->expectException(ContainerException::class);
         $container->add('test', $mockFactory);
-
     }
 
     public function testContainerGetWhenNotBuilt()
