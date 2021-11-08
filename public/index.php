@@ -8,8 +8,6 @@ use Sandbox\Routing\Router;
 
 require_once '../vendor/autoload.php';
 
-
-
 // Start dependencies
 $container = new Container();
 
@@ -19,7 +17,7 @@ $dependencies($container);
 $appDependencies = require_once '../app/Settings/dependencies.php';
 $appDependencies($container);
 
-//$response = $container->get('Response');
+
 $response = $container->get('ResponseHelper');
 $requestCreator = $container->get('RequestCreator');
 $request = $requestCreator->createRequest();
@@ -32,4 +30,3 @@ $routes($app);
 
 // End routing
 $app->done();
-
