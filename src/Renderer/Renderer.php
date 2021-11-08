@@ -7,7 +7,6 @@ namespace Sandbox\Renderer;
 
 
 use Sandbox\Exceptions\RendererException;
-use Sandbox\Interfaces\ResponseInterface;
 
 class Renderer
 {
