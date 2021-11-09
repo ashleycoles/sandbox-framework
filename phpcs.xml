@@ -6,15 +6,13 @@
     <!-- check all files in the app directory, feel free to add more files with:
     <file>FOLDER NAME</file>
     -->
-    <file>app</file>
-
-    <!-- exclude our migrations directory from the violation check-->
-    <exclude-pattern>*/tests/*</exclude-pattern>
+    <file>src</file>
 
     <!-- ignore warnings and display ERRORS only -->
     <arg  value="np"/>
 
     <!-- Our base rule: set to PSR12-->
     <rule  ref="PSR12"/>
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
 
 </ruleset>
