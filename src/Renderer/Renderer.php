@@ -56,9 +56,14 @@ class Renderer
         return is_file($templatePath) && is_readable($templatePath);
     }
 
+    /**
+     * Extracts the data array and includes the template
+     * @param string $template
+     * @param array $data
+     */
     protected function includeTemplateWithDataScope(string $template, array $data): void
     {
         extract($data);
-        include func_get_arg(0);
+        include $template;
     }
 }
