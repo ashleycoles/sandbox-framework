@@ -31,13 +31,25 @@ class Renderer
     public function renderTemplate(string $templateName, array $content): string
     {
         $templatePath = $this->templateDirectory . $templateName;
-        extract($content);
-        if (file_exists($templatePath)) {
+        if ($this->templateExists($templateName)) {
+            extract($content);
             ob_start();
             include_once $templatePath;
             $output = ob_get_contents();
             ob_end_clean();
             return $output;
         } throw new RendererException('Requested template does not exist.');
+    }
+
+    /**
+     * Checks a given template name to make sure it exists and is readable.
+     *
+     * @param string $templateName
+     * @return bool
+     */
+    public function templateExists(string $templateName): bool
+    {
+        $templatePath = $this->templateDirectory . $templateName;
+        return is_file($templatePath) && is_readable($templatePath);
     }
 }
