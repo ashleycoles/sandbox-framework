@@ -32,13 +32,16 @@ class Renderer
     {
         $templatePath = $this->templateDirectory . $templateName;
         if ($this->templateExists($templateName)) {
-            extract($content);
-            ob_start();
-            include_once $templatePath;
-            $output = ob_get_contents();
-            ob_end_clean();
+            try {
+                ob_start();
+                $this->includeTemplateWithDataScope($templatePath, $content);
+                $output = ob_get_clean();
+            } catch (\Exception $exception) {
+                ob_end_clean();
+                throw $exception;
+            }
             return $output;
-        } throw new RendererException('Requested template does not exist.');
+        } throw new RendererException('Requested template "' . $templateName . '" does not exist.');
     }
 
     /**
@@ -51,5 +54,11 @@ class Renderer
     {
         $templatePath = $this->templateDirectory . $templateName;
         return is_file($templatePath) && is_readable($templatePath);
+    }
+
+    protected function includeTemplateWithDataScope(string $template, array $data): void
+    {
+        extract($data);
+        include func_get_arg(0);
     }
 }
