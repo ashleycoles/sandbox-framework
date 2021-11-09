@@ -68,6 +68,8 @@ class Response implements ResponseInterface
     }
 
     /**
+     * Ensures the provide status code is valid.
+     *
      * @param int $status
      * @throws ResponseException
      */
