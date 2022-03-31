@@ -88,5 +88,6 @@ class Request implements RequestInterface
         if (!array_key_exists($name, $this->postBody)) {
             throw new RequestException('Request post data not found');
         }
+        return $this->postBody[$name];
     }
 }

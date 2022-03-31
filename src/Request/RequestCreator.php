@@ -13,6 +13,7 @@ class RequestCreator
      * Public interface for generating a Request object.
      *
      * @return RequestInterface
+     * @throws RequestException
      */
     public function createRequest(): RequestInterface
     {
