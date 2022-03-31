@@ -78,6 +78,7 @@ class RouteMethodSetter
 
     /**
      * Ends routing.
+     * @throws \Sandbox\Exceptions\RouterException
      */
     public function done(): void
     {

@@ -23,10 +23,13 @@ class Renderer
     /**
      * Renders the given template.
      *
-     * @param  string $templateName
-     * @param  array  $content      of data - each key becomes a variable available in the template
+     * @param string $templateName
+     * @param array $content of data - each key becomes a variable available in the template
+     *
      * @return string
+     *
      * @throws RendererException
+     * @throws \Exception
      */
     public function renderTemplate(string $templateName, array $content): string
     {
@@ -48,6 +51,7 @@ class Renderer
      * Checks a given template name to make sure it exists and is readable.
      *
      * @param string $templateName
+     *
      * @return bool
      */
     public function templateExists(string $templateName): bool
@@ -58,6 +62,7 @@ class Renderer
 
     /**
      * Extracts the data array and includes the template
+     *
      * @param string $template
      * @param array $data
      */

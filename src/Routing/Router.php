@@ -30,15 +30,8 @@ class Router extends ActiveRouteResolver
     }
 
     /**
-     * @param RouteInterface $route An object implementing the RouteInterface
-     */
-    public function registerRoute(RouteInterface $route): void
-    {
-        $this->routes[] = $route;
-    }
-
-    /**
      * Finishes up routing.
+     * @throws RouterException
      */
     public function resolve(): void
     {

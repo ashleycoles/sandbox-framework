@@ -16,8 +16,6 @@ abstract class ActiveRouteResolver
     /**
      * Compares a Request with the array of Route objects.
      *
-     * @param  array            $routes
-     * @param  RequestInterface $request
      * @return RouteInterface
      */
     public function resolveRoutes(): ?RouteInterface
@@ -35,6 +33,14 @@ abstract class ActiveRouteResolver
     }
 
     /**
+     * @param RouteInterface $route An object implementing the RouteInterface
+     */
+    public function registerRoute(RouteInterface $route): void
+    {
+        $this->routes[] = $route;
+    }
+
+    /**
      * Compares Route and Request methods.
      *
      * @param  string $routeMethod
@@ -43,7 +49,7 @@ abstract class ActiveRouteResolver
      */
     protected function resolveMethod(string $routeMethod, string $requestMethod): bool
     {
-        return $routeMethod === $requestMethod ? true : false;
+        return $routeMethod === $requestMethod;
     }
 
     /**
@@ -55,6 +61,6 @@ abstract class ActiveRouteResolver
      */
     protected function resolveURI(string $routeURI, string $requestURI): bool
     {
-        return $routeURI === $requestURI ? true : false;
+        return $routeURI === $requestURI;
     }
 }

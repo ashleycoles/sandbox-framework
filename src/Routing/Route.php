@@ -10,7 +10,7 @@ class Route implements RouteInterface
 {
     protected string $URI;
     protected string $method;
-    protected $callable;
+    protected string $callable;
 
     /**
      * Route constructor.
