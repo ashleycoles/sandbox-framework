@@ -80,4 +80,12 @@ class Container implements ContainerInterface
         // Mark the container as built
         $this->built = true;
     }
+
+    /**
+     * @return bool
+     */
+    public function isBuilt(): bool
+    {
+        return $this->built;
+    }
 }

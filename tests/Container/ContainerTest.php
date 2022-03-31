@@ -31,4 +31,11 @@ class ContainerTest extends TestCase
         $this->expectException(ContainerException::class);
         $container->get('test');
     }
+
+    public function testContainerBuildBuiltFlag()
+    {
+        $container = new Sandbox\Container\Container();
+        $container->build();
+        $this->assertTrue($container->isBuilt());
+    }
 }
