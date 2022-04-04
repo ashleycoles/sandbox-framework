@@ -80,6 +80,7 @@ class App
 
     /**
      * Ends routing.
+     *
      * @throws RouterException
      */
     public function done(): void
