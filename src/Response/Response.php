@@ -27,7 +27,7 @@ class Response implements ResponseInterface
     /**
      * Sends all the request headers
      *
-     * @param string $headers
+     * @return ResponseInterface
      */
     public function sendHeaders(): ResponseInterface
     {
