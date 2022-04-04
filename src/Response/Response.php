@@ -38,6 +38,16 @@ class Response implements ResponseInterface
     }
 
     /**
+     * @return array
+     */
+    public function getHeaders(): array
+    {
+        return $this->headers;
+    }
+
+
+
+    /**
      * @return string
      */
     public function getContent(): string

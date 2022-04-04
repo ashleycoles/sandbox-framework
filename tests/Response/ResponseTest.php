@@ -47,4 +47,16 @@ class ResponseTest extends TestCase
         $result = $sut->setHeader('Content-Type: application/json');
         $this->assertInstanceOf(Response::class, $result);
     }
+
+    public function testGetHeaders()
+    {
+        $sut = new Response();
+        $result = $sut->setHeader('Content-Type: application/json');
+        $headers = $result->getHeaders();
+
+        $this->assertInstanceOf(Response::class, $result);
+        $this->assertIsArray($headers);
+        $this->assertContains('Content-Type: application/json', $headers);
+        $this->assertCount(1, $headers);
+    }
 }
