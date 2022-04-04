@@ -25,6 +25,14 @@ class RequestTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
+    public function testGetQueryParams()
+    {
+        $sut = new Request('/', 'GET', ['test'=>'test'], []);
+        $expected = ['test' => 'test'];
+        $result = $sut->getQueryParams();
+        $this->assertEquals($expected, $result);
+    }
+
     public function testGetQueryParamNotExist()
     {
         $sut = new Request('/', 'GET', ['test'=>'test'], []);
@@ -37,6 +45,30 @@ class RequestTest extends TestCase
         $sut = new Request('/', 'GET', [], ['test'=>'test']);
         $expected = 'test';
         $result = $sut->getPostBodyItem('test');
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testGetPostBody()
+    {
+        $sut = new Request('/', 'GET', [], ['test'=>'test']);
+        $expected = ['test'=>'test'];
+        $result = $sut->getPostBody();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testGetURI()
+    {
+        $sut = new Request('/', 'GET', [], []);
+        $expected = '/';
+        $result = $sut->getURI();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testGetMethod()
+    {
+        $sut = new Request('/', 'GET', [], []);
+        $expected = 'GET';
+        $result = $sut->getMethod();
         $this->assertEquals($expected, $result);
     }
 
